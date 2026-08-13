@@ -2,16 +2,14 @@ import numpy as np
 
 def mean_squared_error(y_pred, y_true):
     """
-    Returns: float MSE
+    Returns: float MSE or None if shapes do not match.
     """
-    # Write code here
-    if len(y_pred) !=len(y_true):
+    y_pred = np.asarray(y_pred)
+    y_true = np.asarray(y_true)
+
+
+    if y_pred.shape != y_true.shape:
         return None
-    n = len(y_pred)
-    y_pred = np.array(y_pred)
-    y_true = np.array(y_true)
-    y_diff = np.array((y_true-y_pred)**2)
-    summer = np.sum(y_diff)
-    ans = summer/n
-    return ans
-    
+
+
+    return float(np.mean((y_pred - y_true) ** 2))
